@@ -1,0 +1,62 @@
+% This file was created with tikzplotlib v0.10.1.
+\begin{tikzpicture}
+
+\definecolor{darkgray176}{RGB}{176,176,176}
+\definecolor{darkorange25512714}{RGB}{255,127,14}
+\definecolor{lightgray204}{RGB}{204,204,204}
+\definecolor{steelblue31119180}{RGB}{31,119,180}
+
+\begin{axis}[
+legend cell align={left},
+legend style={fill opacity=0.8, draw opacity=1, text opacity=1, draw=lightgray204},
+tick align=outside,
+tick pos=left,
+title={Charge 33mF capacitor to 2 V},
+x grid style={darkgray176},
+xlabel={Input power [dBm]},
+xmajorgrids,
+xmin=-16.5, xmax=16.5,
+xtick style={color=black},
+y grid style={darkgray176},
+ylabel={Charge time [minutes]},
+ymajorgrids,
+ymin=-6.88346047580242, ymax=204.901194832524,
+ytick style={color=black}
+]
+\addplot [semithick, steelblue31119180]
+table {%
+-15 195.274619591236
+-12.5 77.0795519471169
+-10 42.4978138685226
+-7.5 25.4483005841573
+-5 16.8234915057818
+-2.5 11.6712726831436
+0 8.53250946998596
+2.5 6.14058626890183
+5 4.60051722129186
+7.5 3.64011029402415
+10 3.15483423471451
+12.5 2.91475012302399
+15 2.80856498877207
+};
+\addlegendentry{868.0 MHz}
+\addplot [semithick, darkorange25512714]
+table {%
+-15 171.935701354345
+-12.5 79.913002705574
+-10 43.8172122160594
+-7.5 27.7466444571813
+-5 18.5743674437205
+-2.5 12.9391544858615
+0 9.28856919606527
+2.5 6.79810093243917
+5 5.01524682839711
+7.5 3.87767249743144
+10 3.26606284379959
+12.5 2.94524544874827
+15 2.74311476548513
+};
+\addlegendentry{920.0 MHz}
+\end{axis}
+
+\end{tikzpicture}
