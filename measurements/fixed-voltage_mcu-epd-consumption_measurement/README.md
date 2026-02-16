@@ -1,7 +1,5 @@
 # Energy required for EPD update
 
-In this measurement the EPD and MCU energy consumption is measured.
-The supply voltage for both components was approximately +3V.
+In this measurement, the energy consumption of both the EPD and the MCU was evaluated. Both components were powered by a supply voltage of approximately +3 V. The measurements were performed using the OTI ARC.
 
-Measured with OTI ARC
-
+<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/fixed-voltage_mcu-epd-consumption_measurement/epd-mcu-energy-consumption.png" width="600">
