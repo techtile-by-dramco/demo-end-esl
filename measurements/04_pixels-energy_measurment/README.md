@@ -4,22 +4,19 @@ In this measurement, the consumption of the DC/DC converter, MCU, and EPD is rec
 
 <img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/variable-voltage_converter-mcu-epd-consumption_measurement/setup.jpg" width="800">
 
-| Input voltage | Timestamp |
-|-|-|
-| 1.25 | 1771404750 |
-| 1.50 | 1771404776 |
-| 1.75 | 1771404830 |
-| 2.00 | 1771404856 |
-| 2.25 | 1771404889 |
-| 2.50 | 1771405024 |
-| 2.75 | 1771405878 |
-| 3.00 | 1771405912 |
+| Input voltage | EPD update percentage | Timestamp |
+|-|-|-|
+| 2.00 | 5 | 1771431506 |
+| 2.00 | 10 | 1771431522 |
+| 2.00 | 25 | 1771431538 |
+| 2.00 | 50 | 1771431566 |
+| 2.00 | 75 | 1771431604 |
+| 2.00 | 100 | 1771431653 |
 
-<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/variable-voltage_converter-mcu-epd-consumption_measurement/1771404750_plot.png" width="800">
-<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/variable-voltage_converter-mcu-epd-consumption_measurement/1771404776_plot.png" width="800">
-<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/variable-voltage_converter-mcu-epd-consumption_measurement/1771404830_plot.png" width="800">
-<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/variable-voltage_converter-mcu-epd-consumption_measurement/1771404856_plot.png" width="800">
-<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/variable-voltage_converter-mcu-epd-consumption_measurement/1771404889_plot.png" width="800">
-<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/variable-voltage_converter-mcu-epd-consumption_measurement/1771405024_plot.png" width="800">
-<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/variable-voltage_converter-mcu-epd-consumption_measurement/1771405878_plot.png" width="800">
-<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/variable-voltage_converter-mcu-epd-consumption_measurement/1771405912_plot.png" width="800">
+
+<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431506_plot.png" width="800">
+<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431522_plot.png" width="800">
+<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431538_plot.png" width="800">
+<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431566_plot.png" width="800">
+<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431604_plot.png" width="800">
+<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431653_plot.png" width="800">
