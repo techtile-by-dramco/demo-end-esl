@@ -13,7 +13,7 @@ for csv_file in csv_files:
 
     timestamp = int(csv_file.stem.split("_")[0])
 
-    df = df[0:1000]
+    # df = df[0:1000]
    
     t = df["timestamp"] - df["timestamp"].iloc[0]
     df["energy_cumulative_J"] = df["energy_J"].cumsum()
