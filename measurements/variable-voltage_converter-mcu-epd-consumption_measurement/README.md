@@ -1,6 +1,6 @@
-## Measure power profile
+## Power profile measurments
 
-| Voltage | Timestamp |
+| Input voltage | Timestamp |
 |-|-|
 | 1.25 | 1771404750 |
 | 1.50 | 1771404776 |
