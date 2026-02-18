@@ -1,5 +1,7 @@
 ## Power profile measurments
 
+<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/variable-voltage_converter-mcu-epd-consumption_measurement/setup.jpg" width="800">
+
 | Input voltage | Timestamp |
 |-|-|
 | 1.25 | 1771404750 |
