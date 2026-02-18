@@ -2,7 +2,7 @@
 
 In this measurement, the consumption of the DC/DC converter, MCU, and EPD is recorded for different input voltages. The left source triggers an EPD update. The right source determines the input voltage.
 
-<img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/variable-voltage_converter-mcu-epd-consumption_measurement/setup.jpg" width="800">
+<!-- <img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/variable-voltage_converter-mcu-epd-consumption_measurement/setup.jpg" width="800"> -->
 
 | Input voltage | EPD update percentage | Timestamp |
 |-|-|-|
