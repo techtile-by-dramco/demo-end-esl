@@ -48,4 +48,4 @@ for csv_file in csv_files:
     fig.suptitle(f"Average supply voltage {round(np.average(df["voltage_V"]),2)}V", fontsize=14)
     fig.tight_layout()
     plt.savefig(f"{current_dir}/{timestamp}_plot.png")
-    plt.show()
+    # plt.show()
