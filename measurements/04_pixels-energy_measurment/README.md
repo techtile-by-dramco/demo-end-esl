@@ -34,26 +34,26 @@ Principle of the Dithering Algorithm
 <table>
   <tr>
     <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/pictures/screen-5.jpg" width="300"></td>
-    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431506_plot.png" width="800"></td>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431506__plot.png" width="800"></td>
   </tr>
   <tr>
     <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/pictures/screen-10.jpg" width="300"></td>
-    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431522_plot.png" width="800"></td>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431522__plot.png" width="800"></td>
   </tr>
   <tr>
     <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/pictures/screen-25.jpg" width="300"></td>
-    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431538_plot.png" width="800"></td>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431538__plot.png" width="800"></td>
   </tr>
   <tr>
     <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/pictures/screen-50.jpg" width="300"></td>
-    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431566_plot.png" width="800"></td>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431566__plot.png" width="800"></td>
   </tr>
   <tr>
     <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/pictures/screen-75.jpg" width="300"></td>
-    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431604_plot.png" width="800"></td>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431604__plot.png" width="800"></td>
   </tr>
   <tr>
     <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/pictures/screen-100.jpg" width="300"></td>
-    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431653_plot.png" width="800"></td>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431653__plot.png" width="800"></td>
   </tr>
 </table>
