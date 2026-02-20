@@ -13,10 +13,47 @@ In this measurement, the consumption of the DC/DC converter, MCU, and EPD is rec
 | 2.00 | 75 | 1771431604 |
 | 2.00 | 100 | 1771431653 |
 
+### Used algotihm
+Principle of the Dithering Algorithm
+- The display is rendered line by line using a 1-bit bitmap to minimize memory usage.
+- An error accumulator converts a grayscale percentage into evenly distributed black pixels.
+- The accumulator is continuous across lines, preventing visible banding and ensuring a uniform fill.
 
+
+<!-- <p align="center">
 <img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431506_plot.png" width="800">
 <img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431522_plot.png" width="800">
 <img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431538_plot.png" width="800">
 <img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431566_plot.png" width="800">
 <img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431604_plot.png" width="800">
 <img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431653_plot.png" width="800">
+</p> -->
+
+### Results
+
+<table>
+  <tr>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/pictures/screen-5.jpg" width="300"></td>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431506_plot.png" width="800"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/pictures/screen-10.jpg" width="300"></td>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431522_plot.png" width="800"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/pictures/screen-25.jpg" width="300"></td>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431538_plot.png" width="800"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/pictures/screen-50.jpg" width="300"></td>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431566_plot.png" width="800"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/pictures/screen-75.jpg" width="300"></td>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431604_plot.png" width="800"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/pictures/screen-100.jpg" width="300"></td>
+    <td><img src="https://github.com/techtile-by-dramco/demo-end-esl/blob/main/measurements/04_pixels-energy_measurment/1771431653_plot.png" width="800"></td>
+  </tr>
+</table>
