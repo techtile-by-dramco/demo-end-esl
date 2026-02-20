@@ -155,31 +155,50 @@ const int W = display.width();
 const int H = display.height();
 
 void fillDitherPercent(uint8_t percent) {
+  // Clamp input to valid range
   if (percent > 100) percent = 100;
 
+  // Invert percentage:
+  // 0%  = full white
+  // 100% = full black
   percent = 100 - percent;
 
+  // Clear internal display buffer
   display.clearBuffer();
 
+  // Error accumulator for dithering (kept across lines)
   uint16_t acc = 0;
 
+  // Process the display line by line
   for (int y = 0; y < H; y++) {
-    uint8_t line[(W + 7) / 8];
-    memset(line, 0xFF, sizeof(line)); // wit
 
+    // One scanline bitmap (1 bit per pixel)
+    uint8_t line[(W + 7) / 8];
+
+    // Initialize line to all white pixels (1 = white)
+    memset(line, 0xFF, sizeof(line));
+
+    // Generate horizontal dithering pattern
     for (int x = 0; x < W; x++) {
+
+      // Accumulate desired black pixel percentage
       acc += percent;
+
+      // When threshold is reached, place a black pixel
       if (acc >= 100) {
         acc -= 100;
-        line[x >> 3] &= ~(1 << (7 - (x & 7))); // zwart
+
+        // Clear the corresponding bit (0 = black)
+        line[x >> 3] &= ~(1 << (7 - (x & 7)));
       }
     }
 
+    // Draw the generated scanline to the display
     display.drawBitmap(
-      0, y,     // x, y
-      line,     // bitmap
-      W, 1,     // width, height
-      EPD_BLACK
+      0, y,     // X, Y position
+      line,     // Bitmap data (1 scanline)
+      W, 1,     // Width, Height
+      EPD_BLACK // Draw color
     );
   }
 
