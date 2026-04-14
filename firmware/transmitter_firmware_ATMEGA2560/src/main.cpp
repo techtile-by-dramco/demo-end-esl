@@ -10,8 +10,6 @@
 #define CLK 50
 #define DIO 51
 
-
-
 // Create a display object of type TM1637Display
 TM1637Display display = TM1637Display(CLK, DIO);
 MAX2871 max;
@@ -36,46 +34,10 @@ const uint8_t celsius[] = {
   SEG_A | SEG_D | SEG_E | SEG_F   // C
 };
 
-
-void setup_interrupt() {
-    cli(); // interrupts uit
-
-    TCCR1A = 0;
-    TCCR1B = 0;
-
-    // CTC mode
-    TCCR1B |= (1 << WGM12);
-
-    // Prescaler 64
-    TCCR1B |= (1 << CS11) | (1 << CS10);
-
-    // 16 MHz / 64 = 250 kHz → 1 ms = 250 ticks
-    OCR1A = 249;
-
-    // Enable compare interrupt
-    TIMSK1 |= (1 << OCIE1A);
-
-    sei(); // interrupts aan
-}
-
-uint16_t update_counter = 0;
-
-bool update = false;
-
 bool freq_update = false;
 
-
+// Display state: 0 = show frequency, 1 = animation
 uint8_t state = 1;
-
-ISR(TIMER1_COMPA_vect) {
-    if(update_counter >= 1000) { // Update every 500 ms
-        update = true;
-        update_counter = 0;
-    } else {
-        update_counter++;
-    }
-}
-
 
 uint16_t default_frequency = 915;
 
@@ -85,11 +47,6 @@ void setup() {
 
   pinMode(2, INPUT);
   pinMode(3, INPUT);
-
-  // attachInterrupt(digitalPinToInterrupt(2), ISR_button1, RISING);
-  // attachInterrupt(digitalPinToInterrupt(3), ISR_button2, RISING);
-
-  setup_interrupt();
 
   // Set the brightness to 5 (0=dimmest 7=brightest)
   display.setBrightness(7);
@@ -115,6 +72,26 @@ void setup() {
   max.controlOutput(0);
 }
 
+uint8_t animIndex = 0;
+unsigned long lastAnimTime = 0;
+const unsigned long animInterval = 150;
+
+// Button lockout variables [Prevent accidental frequency changes when starting the device]
+unsigned long state_change_time = 0;
+const unsigned long lockout_time = 500;
+
+// Button lockout variables [Prevent accidental frequency changes when pressing both buttons together]
+unsigned long button_lock_time = 0;
+bool buttons_locked = false;
+
+int freq_backup = 0;
+unsigned long change_time = 0;
+bool freq_changed = false;
+
+// Button states
+static bool last_b1 = false;
+static bool last_b2 = false;
+static bool last_both = false;
 
 void updateEEPROM() {
   EEPROM.put(0, default_frequency);
@@ -123,64 +100,9 @@ void updateEEPROM() {
 
 void loop() {
 
-  // bool b1 = digitalRead(2) == HIGH;
-  // bool b2 = digitalRead(3) == HIGH;
-
-  // static bool last_b1 = false;
-  // static bool last_b2 = false;
-
-  // // detect rising edge (indrukken)
-  // bool b1_pressed = b1 && !last_b1;
-  // bool b2_pressed = b2 && !last_b2;
-
-  // // combinatie
-  // if (b1 && b2) {
-  //     state = 1;
-  //     max.controlOutput(0);
-  // }
-  // // else if (b1 && b2 && state == 1) {
-  // //     state = 0;
-  // //     freq_update = true;
-  // //     max.setFreq(default_frequency);
-  // // }
-  // else if (b1_pressed && state == 1) {
-  //     state = 0;
-  //     freq_update = true;
-  //     max.setFreq(default_frequency);
-  //     delay(100);
-  // }
-  // else if (b2_pressed && state == 1) {
-  //     state = 0;
-  //     freq_update = true;
-  //     max.setFreq(default_frequency);
-  //     delay(100);
-  // }
-  // else if (b1_pressed && state == 0) {
-  //     state = 0;
-  //     default_frequency += 1;
-  //     freq_update = true;
-  //     max.setFreq(default_frequency);
-  //     updateEEPROM();
-  // }
-  // else if (b2_pressed && state == 0) {
-  //     state = 0;
-  //     default_frequency -= 1;
-  //     freq_update = true;
-  //     max.setFreq(default_frequency);
-  //     updateEEPROM();
-  // }
-
-  // // update vorige toestand
-  // last_b1 = b1;
-  // last_b2 = b2;
-
-
+  // Poll button states
   bool b1 = digitalRead(2) == HIGH;
   bool b2 = digitalRead(3) == HIGH;
-
-  static bool last_b1 = false;
-  static bool last_b2 = false;
-  static bool last_both = false;
 
   // edge detectie
   bool b1_pressed = b1 && !last_b1;
@@ -188,32 +110,77 @@ void loop() {
   bool both_pressed = b1 && b2;
   bool both_edge = both_pressed && !last_both;
 
-  // combinatie (één keer!)
-  if (both_edge) {
+  // Handle button presses and state changes
+  if (!buttons_locked) {
+    // combinatie (één keer!)
+    if (both_edge) {
+        // state = 1;
+        // max.controlOutput(0);
       state = 1;
+
+      if (freq_changed && (millis() - change_time < 1000)) {
+
+          // rollback laatste wijziging
+          default_frequency = freq_backup;
+
+          max.setFreq(default_frequency);
+          updateEEPROM();
+
+          freq_changed = false;
+      }
+
       max.controlOutput(0);
+
+      // Lock buttons for a short period to prevent accidental changes
+      buttons_locked = true;
+      button_lock_time = millis();
+    }
+    else if (b1_pressed && state == 1) {
+        state = 0;
+        state_change_time = millis();
+        freq_update = true;
+        max.setFreq(default_frequency);
+    }
+    else if (b2_pressed && state == 1) {
+        state = 0;
+        state_change_time = millis();
+        freq_update = true;
+        max.setFreq(default_frequency);
+    }
+    else if (b1_pressed && state == 0) {
+        if (millis() - state_change_time < lockout_time) return;
+
+        freq_backup = default_frequency;
+
+        state = 0;
+        default_frequency += 1;
+        freq_update = true;
+        max.setFreq(default_frequency);
+        updateEEPROM();
+
+        change_time = millis();
+        freq_changed = true;
+    }
+    else if (b2_pressed && state == 0) {
+        if (millis() - state_change_time < lockout_time) return;
+
+        freq_backup = default_frequency;
+        
+        state = 0;
+        default_frequency -= 1;
+        freq_update = true;
+        max.setFreq(default_frequency);
+        updateEEPROM();
+        
+        change_time = millis();
+        freq_changed = true;
+    }
   }
-  else if (b1_pressed && state == 1) {
-      state = 0;
-      freq_update = true;
-      max.setFreq(default_frequency);
-  }
-  else if (b2_pressed && state == 1) {
-      state = 0;
-      freq_update = true;
-      max.setFreq(default_frequency);
-  }
-  else if (b1_pressed && state == 0) {
-      default_frequency += 1;
-      freq_update = true;
-      max.setFreq(default_frequency);
-      updateEEPROM();
-  }
-  else if (b2_pressed && state == 0) {
-      default_frequency -= 1;
-      freq_update = true;
-      max.setFreq(default_frequency);
-      updateEEPROM();
+  else {
+    // Check if lockout period has passed
+    if (millis() - button_lock_time >= 500) {
+        buttons_locked = false;
+    }
   }
 
   // update states
@@ -221,29 +188,34 @@ void loop() {
   last_b2 = b2;
   last_both = both_pressed;
 
-  if(update) {
-    switch (state)
-    {
+  // Control display based on state
+  switch (state){
     case 0:
-      if(freq_update) {
+      if (freq_update) {
         display.clear();
         display.showNumberDec(default_frequency);
         freq_update = false;
       }
       break;
-    case 1:
-      uint8_t dash[] = {0x40, 0x40, 0x40, 0x40}; // midden segment
 
-      for (int i = 0; i < 4; i++) {
-          uint8_t data[] = {0, 0, 0, 0};
-          data[i] = 0x40;
-          display.setSegments(data);
-          delay(150);
+    case 1:
+      if (millis() - lastAnimTime >= animInterval) {
+        lastAnimTime = millis();
+
+        // Serial.println("update anim");
+
+        uint8_t data[4] = {0, 0, 0, 0};
+        data[animIndex] = 0x40;   // midden segment
+
+        display.setSegments(data);
+
+        animIndex++;
+        if (animIndex >= 4) {
+          animIndex = 0;
+        }
       }
       break;
     default:
       break;
     }
-    update = false;
-  }
 }
