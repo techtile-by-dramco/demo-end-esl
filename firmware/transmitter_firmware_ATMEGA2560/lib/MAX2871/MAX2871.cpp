@@ -163,8 +163,8 @@ void MAX2871::setFreq(double freq_mhz){
   reg1 = 0x280107D1; 
   reg2 = 0x92005F42;
   reg3 = 0x00001F23;
-  // reg4 = 0x63AFF1C4; 3 dBm
-  reg4 = 0x63AFF104; // 5 dBm
+  reg4 = 0x63AFF1C4; //3 dBm
+  // reg4 = 0x63AFF104; // -5 dBm
   reg5 = 0x00440005;
 
   updateAllRegs(reg0, reg1, reg2, reg3, reg4, reg5);
